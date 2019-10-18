@@ -4,12 +4,18 @@ from matplotlib import pyplot as plt
 import math
 
 img = cv.imread('test_photos/0degrees_18inches.png')
-img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
-h, s, v = cv.split(img)
+hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+h, s, v = cv.split(hsv)
+
+
 
 h=h.ravel()
 s=s.ravel()
 v=v.ravel()
+
+print("mean", hsv.mean())
+
+
 
 hue_hist=plt.hist(h,180,[0,180])
 sat_hist=plt.hist(s,256,[0,256])

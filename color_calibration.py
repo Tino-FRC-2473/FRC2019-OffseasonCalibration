@@ -2,7 +2,7 @@ import numpy as np
 import cv2 as cv
 from matplotlib import pyplot as plt
 
-img = cv.imread('FRC2019-OffseasonVisionAlignment/test_photos/0degrees_18inches.png')
+img = cv.imread('test_photos/0degrees_18inches.png')
 img = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 h, s, v = cv.split(img)
 

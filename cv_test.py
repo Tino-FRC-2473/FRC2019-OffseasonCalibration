@@ -12,7 +12,7 @@ while(True):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     low_green = np.array([62,181,93])
     high_green= np.array([88,255,174])
-    
+
     mask = cv2.inRange(hsv, low_green, high_green)
     _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     #sorts contours by area
@@ -38,7 +38,7 @@ while(True):
             _, _, rot_angle = rect
             box = cv2.boxPoints(rect)
             box = np.int0(box)
-        
+
 
         total_contour_area += cv2.contourArea(c)
 

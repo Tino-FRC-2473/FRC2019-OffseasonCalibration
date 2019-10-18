@@ -15,6 +15,8 @@ hue_hist=plt.hist(h,180,[0,180])
 sat_hist=plt.hist(s,256,[0,256])
 val_hist=plt.hist(v,256,[0,256])
 
+plt.show()
+
 print("Hue: " + str(h.mean()))
 print("Saturation: " + str(s.mean()))
 print("Value: " + str(v.mean()))

@@ -8,7 +8,7 @@ import traceback
 import os
 from matplotlib import pyplot as plt
 
-vid = cv2.VideoCapture('video.mp4')
+vid = cv2.VideoCapture('slideshow_test_pictures.mp4')
 hsv_map = np.zeros((180, 256, 3), np.uint8)
 h, s = np.indices(hsv_map.shape[:2])
 hsv_map[:,:,0] = h
@@ -20,9 +20,10 @@ hist_scale = 10
 while(True):
 
     #start of cv code
-    # frame = cv2.imread('test_photos/0degrees_18inches.png')
+    frame = cv2.imread('test_photos/0degrees_18inches.png')
 
-    _, frame = vid.read()
+    # _, frame = vid.read()
+
 
     # cv2.imshow('camera', frame)
 

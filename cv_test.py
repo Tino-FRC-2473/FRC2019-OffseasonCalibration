@@ -8,6 +8,7 @@ import traceback
 import os
 from matplotlib import pyplot as plt
 
+
 vid = cv2.VideoCapture('slideshow_test_pictures.mp4')
 hsv_map = np.zeros((180, 256, 3), np.uint8)
 h, s = np.indices(hsv_map.shape[:2])
@@ -20,9 +21,9 @@ hist_scale = 10
 while(True):
 
     #start of cv code
-    frame = cv2.imread('test_photos/0degrees_18inches.png')
+    # frame = cv2.imread('test_photos/0degrees_24inches.png')
 
-    # _, frame = vid.read()
+    _, frame = vid.read()
 
 
     # cv2.imshow('camera', frame)
@@ -55,11 +56,11 @@ while(True):
 
 
 
-    # low_green = np.array([62,181,93])
-	# high_green= np.array([88,255,174])
+    low_green = np.array([69,152,0])
+    high_green= np.array([86,219,255])
 
-    low_green = np.array([int(h_vals.mean() - (0.3*h_vals.std())), 181,0])
-    high_green= np.array([int(h_vals.mean() + (0.1*h_vals.std())),255,255])
+    # low_green = np.array([int(h_vals.mean() - (0.3*h_vals.std())), 181,0])
+    # high_green= np.array([int(h_vals.mean() + (0.1*h_vals.std())),255,255])
 
     mask = cv2.inRange(hsv_2, low_green, high_green)
     contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)

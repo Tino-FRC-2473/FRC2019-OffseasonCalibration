@@ -176,6 +176,7 @@ class VisionTargetDetector:
         #sorts contours by area
         #contours.sort(key = cv2.contourArea, reverse = True)
 
+
         cv2.line(frame, (0, 400), (self.SCREEN_WIDTH, 400), (255,0,0), 3)
         contours.sort(key = lambda countour: cv2.boundingRect(countour)[0])
 

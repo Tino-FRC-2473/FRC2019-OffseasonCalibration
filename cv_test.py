@@ -39,11 +39,14 @@ high_green= np.array([86,219,255])
 
 
 def get_new_hsv(res):
+
+    
+
     global true_green_vals
     print(len(true_green_vals))
     for i in range(10):
         row=random.randrange(0,len(res))
-        print(res[row])
+        # print(res[row])
         true_green_vals = np.append(true_green_vals, np.reshape(np.array(res[row]), (1, 1, 3)), 0)
 
         
@@ -53,8 +56,14 @@ def get_new_hsv(res):
     s=true_green_vals[:,:,1]
     v=true_green_vals[:,:,2]
 
-    low_h, low_s, low_v = (h.mean() - 2.5*h.std()), (s.mean() - 2.5*s.std()), (v.mean() - 2.5*v.std())
-    high_h, high_s, high_v = (h.mean() + 2.5*h.std()), (s.mean() + 2.5*s.std()), (v.mean() + 2.5*v.std())
+    plt.figure()
+    hue_hist=plt.hist(h,180,[0,179]); plt.show()
+
+
+    print()
+
+    low_h, low_s, low_v = (h.mean() - 2*h.std()), (s.mean() - 1*s.std()), (v.mean() - 2.5*v.std())
+    high_h, high_s, high_v = (h.mean() + 2*h.std()), (s.mean() + 1*s.std()), (v.mean() + 2.5*v.std())
 
     return np.array([int(low_h), int(low_s), int(low_h)]), np.array([int(high_h), int(high_s), int(high_v)])
     
@@ -87,7 +96,7 @@ while(True):
 
 
     h_vals = vis[:,:, 0]
-    print(255*h_vals[h_vals != 0])
+    # print(255*h_vals[h_vals != 0])
     h_vals = 255*h_vals[h_vals != 0]
     hue_hist=plt.hist(h_vals,180,[0,180])
   
@@ -136,6 +145,8 @@ while(True):
 
     total_contour_area = 0
 
+    res = cv2.bitwise_and(frame,frame, mask= mask)
+
     for c in contours:
         #ignore anything below hatch panel level
         centery = cv2.boundingRect(c)[1] + cv2.boundingRect(c)[3]/2
@@ -159,19 +170,19 @@ while(True):
         cv2.drawContours(frame, [rotated_rect.box], 0, (0, 0, 255), 2)
         cv2.imshow("Contours", mask)
         cv2.imshow("Frame", frame)
-        # cv2.imshow("Res", res)
+        cv2.imshow("Res", res)
         cv2.waitKey(1)
 
     # if there are less than two rectangles, return -99, -1
     if (len(rotated_boxes) < 2):
         cv2.imshow("Contours", mask)
         cv2.imshow("Frame", frame)
-        # cv2.imshow("Res", res)
+        cv2.imshow("Res", res)
         cv2.waitKey(1)
         #return -99, -1
 
     cv2.imshow("Contours", mask)
     cv2.imshow("Frame", frame)
-    # cv2.imshow("Res", res)
+    cv2.imshow("Res", res)
     # cv2.waitKey(1)
 

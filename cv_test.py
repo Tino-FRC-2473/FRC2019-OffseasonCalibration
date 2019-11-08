@@ -35,8 +35,15 @@ pixel_count=len(true_green_vals)
 low_green = np.array([69,152,0])
 high_green= np.array([86,219,255])
 
-def get_new_hsv(res):
+def get_new_hsv(res):]
+
     global true_green_vals
+    global low_green
+    global high_green
+    
+    if(res is None):
+        return low_green, high_green
+    
 
     for i in range(100):
         row=random.randrange(0,len(res))
